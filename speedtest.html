@@ -63,7 +63,7 @@
     </div>
 
     <script>
-      const testFileUrl = "https://speed.hetzner.de/1MB.bin"; // Test file (1 MB)
+      const testFileUrl = "https://speed.hetzner.de/1MB.bin"; 
       const startTestBtn = document.getElementById("start-test");
       const speedResult = document.getElementById("speed");
 
@@ -72,15 +72,15 @@
         const startTime = performance.now();
         try {
           const response = await fetch(testFileUrl);
-          const data = await response.blob(); // Fetch the file
+          const data = await response.blob(); 
           const endTime = performance.now();
 
-          const fileSizeInBits = data.size * 8; // Convert bytes to bits
-          const timeTakenInSeconds = (endTime - startTime) / 1000; // Convert ms to seconds
+          const fileSizeInBits = data.size * 8; 
+          const timeTakenInSeconds = (endTime - startTime) / 1000; 
 
           const speedMbps = (fileSizeInBits / timeTakenInSeconds / 1e6).toFixed(
             2
-          ); // Convert to Mbps
+          ); 
           speedResult.textContent = `Download Speed: ${speedMbps} Mbps`;
         } catch (error) {
           speedResult.textContent = "Error: Unable to test speed.";
