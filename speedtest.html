@@ -1,92 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Internet Speed Test</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #f9f9f9;
-      margin: 0;
-      padding: 0;
-    }
-
-    .container {
-      max-width: 500px;
-      margin: 100px auto;
-      background: #ffffff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    h1 {
-      font-size: 24px;
-      color: #333;
-    }
-
-    p {
-      font-size: 16px;
-      color: #555;
-    }
-
-    .result {
-      margin: 20px 0;
-      font-size: 24px;
-      font-weight: bold;
-      color: #1d72b8;
-    }
-
-    .btn {
-      background-color: #1d72b8;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      font-size: 16px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      background-color: #155a94;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Internet Speed Test</h1>
-    <p>Click the button below to test your download speed.</p>
-    <button class="btn" id="start-test">Start Test</button>
-    <p class="result" id="speed">Your speed will appear here</p>
-  </div>
-
-  <script>
-    const testFileUrl = "https://speed.hetzner.de/1MB.bin"; // Test file (1 MB)
-    const startTestBtn = document.getElementById("start-test");
-    const speedResult = document.getElementById("speed");
-
-    async function testInternetSpeed() {
-      speedResult.textContent = "Testing...";
-      const startTime = performance.now();
-      try {
-        const response = await fetch(testFileUrl);
-        const data = await response.blob(); // Fetch the file
-        const endTime = performance.now();
-
-        const fileSizeInBits = data.size * 8; // Convert bytes to bits
-        const timeTakenInSeconds = (endTime - startTime) / 1000; // Convert ms to seconds
-
-        const speedMbps = (fileSizeInBits / timeTakenInSeconds / 1e6).toFixed(2); // Convert to Mbps
-        speedResult.textContent = `Download Speed: ${speedMbps} Mbps`;
-      } catch (error) {
-        speedResult.textContent = "Error: Unable to test speed.";
-        console.error(error);
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Internet Speed Test</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
       }
-    }
 
-    startTestBtn.addEventListener("click", testInternetSpeed);
-  </script>
-</body>
+      .container {
+        max-width: 500px;
+        margin: 100px auto;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        font-size: 24px;
+        color: #333;
+      }
+
+      p {
+        font-size: 16px;
+        color: #555;
+      }
+
+      .result {
+        margin: 20px 0;
+        font-size: 24px;
+        font-weight: bold;
+        color: #1d72b8;
+      }
+
+      .btn {
+        background-color: #1d72b8;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background-color: #155a94;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Internet Speed Test</h1>
+      <p>Click the button below to test your download speed.</p>
+      <button class="btn" id="start-test">Start Test</button>
+      <p class="result" id="speed">Your speed will appear here</p>
+    </div>
+
+    <script>
+      const testFileUrl = "https://speed.hetzner.de/1MB.bin"; // Test file (1 MB)
+      const startTestBtn = document.getElementById("start-test");
+      const speedResult = document.getElementById("speed");
+
+      async function testInternetSpeed() {
+        speedResult.textContent = "Testing...";
+        const startTime = performance.now();
+        try {
+          const response = await fetch(testFileUrl);
+          const data = await response.blob(); // Fetch the file
+          const endTime = performance.now();
+
+          const fileSizeInBits = data.size * 8; // Convert bytes to bits
+          const timeTakenInSeconds = (endTime - startTime) / 1000; // Convert ms to seconds
+
+          const speedMbps = (fileSizeInBits / timeTakenInSeconds / 1e6).toFixed(
+            2
+          ); // Convert to Mbps
+          speedResult.textContent = `Download Speed: ${speedMbps} Mbps`;
+        } catch (error) {
+          speedResult.textContent = "Error: Unable to test speed.";
+          console.error(error);
+        }
+      }
+
+      startTestBtn.addEventListener("click", testInternetSpeed);
+    </script>
+  </body>
 </html>
