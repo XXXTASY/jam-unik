@@ -58,7 +58,7 @@
         ctx.rotate((minuteAngle * Math.PI) / 180);
         ctx.font = "20px sans-serif";
         ctx.fillStyle = "blue";
-        const minuteRepeats = 5;
+        const minuteRepeats = 6;
         const minuteSpacing = 20;
         for (let i = 0; i < minuteRepeats; i++) {
           const textWidth = ctx.measureText(minuteString).width;
@@ -71,7 +71,7 @@
         ctx.rotate((secondAngle * Math.PI) / 180);
         ctx.font = "20px sans-serif";
         ctx.fillStyle = "red";
-        const secondRepeats = 6;
+        const secondRepeats = 8;
         const secondSpacing = 15;
         for (let i = 0; i < secondRepeats; i++) {
           const textWidth = ctx.measureText(secondString).width;
